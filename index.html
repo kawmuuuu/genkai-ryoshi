@@ -4,10 +4,10 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>限界漁師｜漁師×大会選手の高タンパク減量飯＆実戦減量理論</title>
-<meta name="description" content="青森市の現役漁師×フィジーク大会選手・Takumiが教える、高タンパク減量飯60品と12週間減量プログラム。漁師の一次情報×科学的減量理論で「読めば痩せる」唯一無二のコンテンツ。"/>
-<meta name="keywords" content="減量飯,高タンパク,PFC,ダイエット,漁師レシピ,魚料理,減量理論,フィジーク,白身魚,低脂質"/>
+<meta name="description" content="青森の現役漁師×ボディビル大会選手・Takumiが公開する、漁師×ボディビル選手が公開する減量飯・トレーニング・大会準備の全記録。漁師の一次情報×科学的減量理論で「読めば変わる」唯一無二のコンテンツ。"/>
+<meta name="keywords" content="減量飯,高タンパク,PFC,ダイエット,漁師レシピ,魚料理,減量理論,ボディビル,白身魚,低脂質"/>
 <meta property="og:title" content="限界漁師｜漁師×大会選手の減量飯"/>
-<meta property="og:description" content="青森の現役漁師×大会選手が教える、高タンパク減量飯60品＋12週間減量プログラム"/>
+<meta property="og:description" content="青森の現役漁師×ボディビル大会選手が公開する、減量飯・トレーニング・大会準備の全記録"/>
 <meta property="og:type" content="website"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -297,6 +297,45 @@ body {
 .usp-card:nth-child(1) .usp-icon { background: var(--sea-pale); }
 .usp-card:nth-child(2) .usp-icon { background: #fef2e8; }
 .usp-card:nth-child(3) .usp-icon { background: #ede9fe; }
+
+/* ── Training menu ── */
+.training-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+  margin-top: 40px;
+}
+.training-card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 32px 28px;
+  transition: transform .2s;
+}
+.training-card:hover { transform: translateY(-4px); }
+.training-card h3 {
+  font-size: 1.1rem; font-weight: 700; color: var(--sea-bright);
+  margin-bottom: 6px;
+}
+.training-card .training-sub {
+  font-size: .82rem; color: rgba(255,255,255,.5); margin-bottom: 16px;
+}
+.training-card ul {
+  list-style: none; padding: 0;
+}
+.training-card li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  font-size: .92rem; color: rgba(255,255,255,.8);
+}
+.training-card li:last-child { border-bottom: none; }
+.training-note {
+  margin-top: 32px; padding: 20px 24px;
+  background: rgba(34,184,207,.08);
+  border: 1px solid rgba(34,184,207,.15);
+  border-radius: 10px;
+  font-size: .88rem; color: rgba(255,255,255,.7); line-height: 1.7;
+}
+@media (max-width: 768px) {
+  .training-grid { grid-template-columns: 1fr; }
+}
 .usp-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
 .usp-card p { color: var(--text-mid); font-size: .88rem; line-height: 1.7; }
 
@@ -605,6 +644,7 @@ body {
       <li><a href="#recipes">レシピ</a></li>
       <li><a href="https://note.com/genkai_ryoshi" target="_blank">減量日記</a></li>
       <li><a href="journal.html">アウトプット部屋</a></li>
+      <li><a href="#training">トレーニングメニュー</a></li>
       <li><a href="#product">有料コンテンツ</a></li>
       <li><a href="#story">Takumiの物語</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -618,6 +658,7 @@ body {
   <a href="#recipes">レシピ</a>
   <a href="https://note.com/genkai_ryoshi" target="_blank">減量日記</a>
   <a href="journal.html">アウトプット部屋</a>
+  <a href="#training">トレーニングメニュー</a>
   <a href="#product">有料コンテンツ</a>
   <a href="#story">Takumiの物語</a>
   <a href="#faq">FAQ</a>
@@ -628,14 +669,14 @@ body {
 <section class="hero">
   <div class="container hero-inner">
     <div>
-      <div class="hero-badge">青森市の現役漁師 × フィジーク大会選手</div>
+      <div class="hero-badge">青森の現役漁師 × ボディビル大会選手</div>
       <h1>
-        限界から生まれた飯で、<br/>
-        <em>身体を変える。</em>
+        限界の現場から、<br/>
+        <em>身体を変える全記録。</em>
       </h1>
       <p class="hero-sub">
-        現役漁師だから知っている魚の鮮度・旬・下処理。<br/>
-        大会選手だから教えられる科学的な減量理論。
+        現役漁師×ボディビル大会選手。<br/>
+        海と鉄の現場で積み上げた減量飯・トレーニング・大会準備の全記録を公開中。
       </p>
       <div class="hero-tags">
         <span>高タンパク・低脂質</span>
@@ -647,7 +688,7 @@ body {
           無料レシピ10品を受け取る →
         </span>
         <a href="#product" class="btn-secondary">
-          有料PDF ¥3,000 を見る
+          有料コンテンツを見る
         </a>
       </div>
     </div>
@@ -673,16 +714,16 @@ body {
         <div class="proof-label">毎朝の出港時間</div>
       </div>
       <div class="proof-item">
-        <div class="proof-num">10年</div>
-        <div class="proof-label">海に出続けた年数</div>
+        <div class="proof-num">BP100kg</div>
+        <div class="proof-label">4年かけて到達</div>
       </div>
       <div class="proof-item">
-        <div class="proof-num">4年</div>
-        <div class="proof-label">BP100kgに届かなかった</div>
+        <div class="proof-num">30品</div>
+        <div class="proof-label">オリジナル減量飯レシピ</div>
       </div>
       <div class="proof-item">
-        <div class="proof-num">-12kg</div>
-        <div class="proof-label">大会で仕上げた減量幅</div>
+        <div class="proof-num">ノート4冊</div>
+        <div class="proof-label">書き続けたトレーニング記録</div>
       </div>
     </div>
   </div>
@@ -701,10 +742,10 @@ body {
       <img src="images/profile.jpg" alt="限界漁師Takumi 大会ステージ">
       <div class="profile-text">
         <h3>限界漁師Takumi</h3>
-        <p class="profile-sub">ホタテ漁師 / フィジーク大会出場</p>
+        <p class="profile-sub">ホタテ漁師 / ボディビル大会出場</p>
         <p>
           陸奥湾でホタテ漁を10年。午前は海、午後はジム。
-          「漁師がフィジーク大会に出る」と言ったら笑われた。
+          「漁師がボディビル大会に出る」と言ったら笑われた。
           それでも72kgから60kgに絞り、ステージに立った。<br><br>
           使ったのは特別なサプリでも食事管理アプリでもない。
           魚を自分で獲って、自分で料理して、食い続けただけ。
@@ -726,16 +767,16 @@ body {
         <div class="usp-icon">🏆</div>
         <h3>大会選手の減量理論</h3>
         <p>
-          フィジーク大会で72kg→60kgに仕上げた実体験から、
-          12週フェーズ設計、停滞期突破法、カーボサイクリングを
-          科学的根拠とともに解説。
+          ボディビル大会で72kg→60kgに仕上げた実体験から、
+          5分割→PPLの分割法の試行錯誤、停滞期の原因分析、
+          減量食の設計を実録ベースで解説。
         </p>
       </div>
       <div class="usp-card">
         <div class="usp-icon">📊</div>
         <h3>全レシピPFC完全表示</h3>
         <p>
-          60品すべてにタンパク質・脂質・炭水化物のPFC値とカロリーを掲載。
+          全レシピにタンパク質・脂質・炭水化物のPFC値とカロリーを掲載。
           「何を食べればいいか」で迷わない、
           減量期に本当に使えるレシピ集。
         </p>
@@ -751,7 +792,7 @@ body {
     <h2 class="section-title">公開レシピ（一部抜粋）</h2>
     <p class="section-desc">
       漁師の現場知識×減量理論から生まれた高タンパク・低脂質レシピ。全品PFC付き。<br/>
-      有料PDF版では60品すべてに写真・工程・アレンジまで収録予定。
+      noteの有料記事とレシピPDFで、全レシピに写真・工程・アレンジを収録。
     </p>
     <div class="recipe-grid">
       <div class="recipe-card">
@@ -892,25 +933,106 @@ body {
   </div>
 </section>
 
+<!-- Training Menu -->
+<section class="section section-dark" id="training">
+  <div class="container">
+    <span class="section-label" style="color:var(--sea-bright);">Training Menu</span>
+    <h2 class="section-title" style="color:#fff;">現在のトレーニングメニュー</h2>
+    <p class="section-desc" style="color:rgba(255,255,255,.6);">
+      PPL（Push / Pull / Legs）分割・週4回。5分割→4分割→PPLと試行錯誤した結果、今はこの形に落ち着いている。
+    </p>
+    <div class="training-grid">
+      <div class="training-card">
+        <h3>Push①（胸メイン）</h3>
+        <div class="training-sub">Chest focused</div>
+        <ul>
+          <li>Bench Press</li>
+          <li>Smith Incline Press</li>
+          <li>Dips</li>
+          <li>Cable Press Down</li>
+          <li>Smith Back Press</li>
+        </ul>
+      </div>
+      <div class="training-card">
+        <h3>Push②（肩メイン）</h3>
+        <div class="training-sub">Shoulder focused</div>
+        <ul>
+          <li>Seated Shoulder Press</li>
+          <li>Narrow Bench Press</li>
+          <li>Machine Shoulder Press</li>
+          <li>Side Raise</li>
+          <li>Incline French Press</li>
+        </ul>
+      </div>
+      <div class="training-card">
+        <h3>Pull（背中・二頭）</h3>
+        <div class="training-sub">Back &amp; Biceps</div>
+        <ul>
+          <li>Chinning</li>
+          <li>Bent Over Row</li>
+          <li>Machine Row</li>
+          <li>Lat Pull Down</li>
+          <li>One Hand T-bar Row</li>
+          <li>Barbell Curl</li>
+        </ul>
+      </div>
+      <div class="training-card">
+        <h3>Legs（脚）</h3>
+        <div class="training-sub">Lower body</div>
+        <ul>
+          <li>Squat</li>
+          <li>Leg Press</li>
+          <li>Hip Thrust</li>
+          <li>Leg Extension</li>
+          <li>Leg Curl</li>
+          <li>Bulgarian Split Squat</li>
+        </ul>
+      </div>
+    </div>
+    <div class="training-note">
+      各種目の重量・セット数・意識しているポイントの詳細は、<a href="https://note.com/genkai_ryoshi" target="_blank" style="color:var(--sea-bright);text-decoration:underline;">有料note</a>で公開しています。
+    </div>
+  </div>
+</section>
+
 <!-- Product -->
 <section class="section" id="product">
   <div class="container">
     <span class="section-label">Main Product</span>
     <h2 class="section-title">有料コンテンツ</h2>
     <p class="section-desc">
-      現在、コンテンツの内容を見直し中です。<br/>
-      準備が整い次第、このページでお知らせします。
+      現役漁師×ボディビル大会選手の一次記録。実体験から生まれたコンテンツです。
     </p>
-    <div style="margin-top:48px; background:#fff; border-radius:20px; padding:60px 48px; text-align:center; border:2px dashed rgba(0,0,0,.08);">
-      <div style="font-size:2rem; margin-bottom:16px;">🔧</div>
-      <h3 style="font-family:'Shippori Mincho',serif; font-size:1.4rem; font-weight:800; margin-bottom:12px;">準備中</h3>
-      <p style="color:var(--text-mid); font-size:.92rem; line-height:1.8; max-width:480px; margin:0 auto 28px;">
-        より良いコンテンツをお届けするため、内容を見直しています。<br/>
-        まずは無料レシピ10品でお試しください。
-      </p>
-      <a href="https://preview.mailerlite.io/forms/2195119/182085808673523248/share" target="_blank" class="btn-primary" style="display:inline-flex;">
-        無料レシピ10品を受け取る →
-      </a>
+    <div class="product-showcase">
+      <!-- 商品1: ¥500 note記事 -->
+      <div class="product-card">
+        <div class="product-badge">公開中</div>
+        <h3>漁師が12kg落としたときの全ルール</h3>
+        <div class="product-price">¥500 <small>/ note記事</small></div>
+        <ul class="product-features">
+          <li>12kgの減量で犯した失敗と逆算した7つのルール</li>
+          <li>1週間の食事プラン</li>
+          <li>体重別調整ガイド</li>
+          <li>減量飯レシピ7品（全品PFC付き）</li>
+        </ul>
+        <a href="https://note.com/genkai_ryoshi/n/ne3c5b598c8a5" target="_blank" class="btn-primary" style="display:inline-flex;">
+          noteで読む →
+        </a>
+      </div>
+      <!-- 商品2: ¥980 note連載 -->
+      <div class="product-card" style="border-color:rgba(0,0,0,.12);">
+        <div class="product-badge" style="background:var(--text-light);">近日公開</div>
+        <h3>漁師が8月の大会で1位を獲るまで</h3>
+        <div class="product-price" style="color:var(--text-mid);">¥980 <small>/ 先行販売</small></div>
+        <ul class="product-features">
+          <li>体重・体脂肪率・トレーニング重量・食事内容</li>
+          <li>8月の大会まで毎月リアルタイム更新</li>
+          <li>先行購入者は全更新分を一括で読める</li>
+        </ul>
+        <button type="button" disabled style="display:inline-flex; align-items:center; justify-content:center; padding:14px 32px; border-radius:100px; background:var(--text-light); color:#fff; border:none; font-size:.9rem; font-weight:700; cursor:not-allowed; opacity:.6;">
+          近日公開
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -940,7 +1062,7 @@ body {
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div>
-            <h4>フィジーク大会出場を決意</h4>
+            <h4>ボディビル大会出場を決意</h4>
             <p>漁師の身体を活かし、科学的な減量に挑戦</p>
           </div>
         </div>
@@ -967,16 +1089,16 @@ body {
         <div class="faq-a">はい。全レシピに材料・分量・工程を詳しく掲載し、写真付きで解説しています。魚の下処理も基礎から丁寧に説明しているので、初めての方でも安心して取り組めます。</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">PDFはどうやって届きますか？</div>
-        <div class="faq-a">購入完了後、メールでPDFのダウンロードリンクをお送りします。スマートフォン・タブレット・PCのいずれでも閲覧可能です。一度購入すれば永久にアクセスできます。</div>
+        <div class="faq-q">どこで購入できますか？</div>
+        <div class="faq-a">noteの有料記事として販売しています。noteのアカウントがあれば購入後すぐに読めます。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">無料版と有料版の違いは？</div>
-        <div class="faq-a">無料版は厳選レシピ10品と基本ガイドです。有料版（¥3,000）は60品の全レシピに加え、12週間の減量理論、調理科学、魚の選び方、保存テクニック、チェックリストなど5章構成の完全版です。</div>
+        <div class="faq-a">¥500のnote記事では、12kgの減量で学んだ失敗と7つのルール、1週間の食事プラン、減量飯レシピ7品（全品PFC・カロリー付き）を公開しています。無料レシピ10品と合わせて使う設計です。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">魚以外のレシピもありますか？</div>
-        <div class="faq-a">もちろんです。鶏むね肉のそぼろ丼、豆腐ハンバーグ、デミグラスオムライスなど肉料理や増量期向けのレシピも収録。減量50品＋増量10品のバランスで飽きずに続けられます。</div>
+        <div class="faq-a">もちろんです。鶏むね肉のトマト煮、オーバーナイトオーツなど魚以外のレシピも収録しています。全品PFC・カロリー付きです。</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">返金はできますか？</div>
@@ -1011,8 +1133,8 @@ body {
       <div>
         <div class="footer-brand">限界漁師</div>
         <p>
-          青森市の現役漁師×フィジーク大会選手・Takumiによる<br/>
-          高タンパク減量飯レシピと実戦的減量理論のデジタルコンテンツ事業。
+          青森の現役漁師×ボディビル大会選手・Takumiによる<br/>
+          減量飯・トレーニング・大会準備の全記録を発信するコンテンツ事業。
         </p>
         <div class="social-links">
           <a href="https://www.instagram.com/genkai_ryoshi/" target="_blank" aria-label="Instagram">IG</a>
@@ -1027,7 +1149,7 @@ body {
           <li><a href="#recipes">レシピ一覧</a></li>
           <li><a href="#product">有料PDF</a></li>
           <li><a href="journal.html">ジャーナル</a></li>
-          <li><a href="#">トレーニング</a></li>
+          <li><a href="#training">トレーニングメニュー</a></li>
         </ul>
       </div>
       <div>
