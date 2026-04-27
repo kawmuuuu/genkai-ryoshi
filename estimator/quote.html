@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>きんにくまごの手 カンタン見積もり</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#ffffff;color:#333333;font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans',sans-serif;font-size:16px;line-height:1.5;padding:0 0 160px 0}
+header{background:#ff6b35;padding:16px;text-align:center;border-bottom:3px solid #e05520}
+header h1{font-size:20px;font-weight:800;color:#ffffff;letter-spacing:0.02em}
+header p{font-size:13px;color:rgba(255,255,255,0.88);margin-top:4px}
+.sec{margin:14px 12px;background:#f5f5f5;border-radius:12px;overflow:hidden;border:1px solid #e0e0e0}
+.sec-h{background:#ff6b35;padding:10px 16px;font-size:14px;font-weight:700;color:#ffffff}
+.sec-b{padding:14px}
+.rl{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:8px;border:2px solid #e0e0e0;margin-bottom:8px;font-size:15px;background:#ffffff;cursor:pointer}
+.rl:last-child{margin-bottom:0}
+.rl.on{border-color:#ff6b35;background:#fff5f2}
+.rl input{width:20px;height:20px;accent-color:#ff6b35;flex-shrink:0}
+.rl .area-name{font-weight:600}
+.cat{font-size:13px;font-weight:700;color:#666666;margin:14px 0 8px;padding-left:8px;border-left:3px solid #ff6b35}
+.cat:first-child{margin-top:0}
+.dvd{height:1px;background:#e0e0e0;margin:14px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:#ffffff;border:2px solid #e0e0e0;border-radius:10px;padding:12px;cursor:pointer}
+.card.on{border-color:#ff6b35;background:#fff5f2}
+.card-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.card-top input{width:20px;height:20px;accent-color:#ff6b35;flex-shrink:0}
+.card-name{font-size:14px;font-weight:600;flex:1;line-height:1.3;color:#333333}
+.card-meta{font-size:11px;color:#888888;margin-bottom:10px}
+.qty{display:flex;align-items:center;gap:8px}
+.qb{width:44px;height:44px;border:2px solid #ff6b35;border-radius:8px;background:#ffffff;color:#ff6b35;font-size:26px;font-weight:700;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;cursor:pointer}
+.qb:active{background:#ff6b35;color:#ffffff}
+.qv{min-width:32px;text-align:center;font-size:20px;font-weight:700;color:#333333}
+.truck-info{background:#ffffff;border-radius:8px;padding:12px 14px;border:2px solid #e0e0e0;text-align:center}
+.truck-count{font-size:28px;font-weight:800;color:#ff6b35}
+.truck-label{font-size:13px;color:#888888;margin-top:2px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:14px;font-weight:600;color:#333333;margin-bottom:6px}
+.form-group input{width:100%;padding:12px 14px;border:2px solid #e0e0e0;border-radius:8px;font-size:16px;color:#333333;background:#ffffff;-webkit-appearance:none;appearance:none}
+.form-group input:focus{outline:none;border-color:#ff6b35}
+.form-note{font-size:12px;color:#888888;margin-top:4px}
+.submit-btn{width:100%;padding:16px;background:#ff6b35;color:#ffffff;border:none;border-radius:10px;font-size:18px;font-weight:800;cursor:pointer;-webkit-tap-highlight-color:transparent;letter-spacing:0.02em}
+.submit-btn:active{background:#e05520}
+.submit-btn:disabled{background:#cccccc;cursor:not-allowed}
+.msg-box{padding:14px;border-radius:8px;font-size:14px;font-weight:600;text-align:center;margin-top:12px;display:none}
+.msg-ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+.msg-ng{background:#fbe9e7;color:#c62828;border:1px solid #ef9a9a}
+#footer{position:fixed;bottom:0;left:0;right:0;background:#ffffff;border-top:3px solid #ff6b35;padding:12px 16px 18px;z-index:20;box-shadow:0 -2px 10px rgba(0,0,0,0.08)}
+.footer-price-label{font-size:12px;color:#888888;margin-bottom:2px}
+.footer-price{font-size:30px;font-weight:800;color:#ff6b35;line-height:1}
+.footer-row{display:flex;justify-content:space-between;align-items:flex-end}
+.footer-phone{font-size:13px;color:#888888;margin-top:4px}
+.footer-phone a{color:#ff6b35;font-weight:700;text-decoration:none}
+.min-note{font-size:11px;color:#aaaaaa;margin-top:2px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>きんにくまごの手 カンタン見積もり</h1>
+  <p>品目を選ぶだけで概算金額がわかります</p>
+</header>
+
+<div class="sec">
+  <div class="sec-h">1. エリア選択</div>
+  <div class="sec-b">
+    <label class="rl on" onclick="setArea(this,650)"><input type="radio" name="area" value="650" checked><span class="area-name">青森駅前・中心街</span></label>
+    <label class="rl" onclick="setArea(this,570)"><input type="radio" name="area" value="570"><span class="area-name">浜田・桂木</span></label>
+    <label class="rl" onclick="setArea(this,580)"><input type="radio" name="area" value="580"><span class="area-name">筒井・佃</span></label>
+    <label class="rl" onclick="setArea(this,990)"><input type="radio" name="area" value="990"><span class="area-name">浪岡</span></label>
+    <label class="rl" onclick="setArea(this,600)"><input type="radio" name="area" value="600"><span class="area-name">東青森・矢田前</span></label>
+    <label class="rl" onclick="setArea(this,650)"><input type="radio" name="area" value="650"><span class="area-name">沖館・西エリア</span></label>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">2. 品目を選んでください</div>
+  <div class="sec-b">
+
+    <div class="cat">大型家具</div>
+    <div class="grid">
+      <div class="card" data-pct="30" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">タンス</span></div>
+        <div class="card-meta">大型家具</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="40" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">ベッド</span></div>
+        <div class="card-meta">大型家具</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="35" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">ソファ</span></div>
+        <div class="card-meta">大型家具</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="20" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">テーブル/机</span></div>
+        <div class="card-meta">大型家具</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="25" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">食器棚</span></div>
+        <div class="card-meta">大型家具</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="20" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">本棚</span></div>
+        <div class="card-meta">大型家具</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+    </div>
+
+    <div class="dvd"></div>
+    <div class="cat">中型</div>
+    <div class="grid">
+      <div class="card" data-pct="10" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">衣装ケース</span></div>
+        <div class="card-meta">中型家具</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="8" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">カラーボックス</span></div>
+        <div class="card-meta">中型家具</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="8" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">椅子</span></div>
+        <div class="card-meta">中型家具</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="15" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">布団一式</span></div>
+        <div class="card-meta">中型家具</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+    </div>
+
+    <div class="dvd"></div>
+    <div class="cat">小型・雑貨</div>
+    <div class="grid">
+      <div class="card" data-pct="5" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">段ボール箱</span></div>
+        <div class="card-meta">小型・雑貨</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="3" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">ゴミ袋</span></div>
+        <div class="card-meta">小型・雑貨</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+    </div>
+
+    <div class="dvd"></div>
+    <div class="cat">家電（リサイクル料含む）</div>
+    <div class="grid">
+      <div class="card" data-pct="10" data-rc="990">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">エアコン</span></div>
+        <div class="card-meta">リサイクル料含む</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="10" data-rc="1870">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">テレビ小</span></div>
+        <div class="card-meta">リサイクル料含む</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="15" data-rc="2970">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">テレビ大</span></div>
+        <div class="card-meta">リサイクル料含む</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="25" data-rc="3740">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">冷蔵庫小<br>(~170L)</span></div>
+        <div class="card-meta">リサイクル料含む</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="35" data-rc="4730">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">冷蔵庫大<br>(171L~)</span></div>
+        <div class="card-meta">リサイクル料含む</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="20" data-rc="2530">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">洗濯機</span></div>
+        <div class="card-meta">リサイクル料含む</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+    </div>
+
+    <div class="dvd"></div>
+    <div class="cat">その他家電</div>
+    <div class="grid">
+      <div class="card" data-pct="8" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">電子レンジ</span></div>
+        <div class="card-meta">その他家電</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="5" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">掃除機</span></div>
+        <div class="card-meta">その他家電</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="3" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">炊飯器</span></div>
+        <div class="card-meta">その他家電</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+      <div class="card" data-pct="5" data-rc="0">
+        <div class="card-top"><input type="checkbox" onchange="toggleCard(this)"><span class="card-name" onclick="tapCard(this)">プリンター</span></div>
+        <div class="card-meta">その他家電</div>
+        <div class="qty"><button type="button" class="qb" onclick="qMinus(this)">-</button><div class="qv">1</div><button type="button" class="qb" onclick="qPlus(this)">+</button></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">3. 軽トラ台数（自動計算）</div>
+  <div class="sec-b">
+    <div class="truck-info">
+      <div class="truck-count" id="t-auto">0</div>
+      <div class="truck-label">台分（品目に応じて自動算出）</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="sec-h">4. お客様情報</div>
+  <div class="sec-b">
+    <div class="form-group">
+      <label for="inp-name">お名前</label>
+      <input type="text" id="inp-name" placeholder="例：山田 太郎" autocomplete="name">
+    </div>
+    <div class="form-group">
+      <label for="inp-phone">電話番号</label>
+      <input type="tel" id="inp-phone" placeholder="例：090-1234-5678" autocomplete="tel">
+      <div class="form-note">折り返しご連絡いたします</div>
+    </div>
+    <button type="button" class="submit-btn" id="submit-btn" onclick="submitForm()">見積もり依頼を送信する</button>
+    <div class="msg-box msg-ok" id="msg-ok">送信完了しました。折り返しご連絡いたします。</div>
+    <div class="msg-box msg-ng" id="msg-ng">送信できませんでした。お電話ください: 070-4680-1725</div>
+  </div>
+</div>
+
+<div id="footer">
+  <div class="footer-price-label">概算見積もり金額（税込）</div>
+  <div class="footer-row">
+    <div>
+      <div class="footer-price" id="r-price">-- 円</div>
+      <div class="min-note" id="r-minnote"></div>
+    </div>
+    <div style="text-align:right">
+      <div class="footer-phone">お電話はこちら</div>
+      <div class="footer-phone"><a href="tel:07046801725">070-4680-1725</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+var GAS_URL = '';
+var MIN_PRICE = 19800;
+var MARGIN = 1.3;
+var S = {area: 650};
+
+function getCard(el){while(el&&!el.getAttribute('data-pct'))el=el.parentElement;return el;}
+
+function calc(){
+  var cards = document.querySelectorAll('.card');
+  var tp = 0, tr = 0, items = [];
+  for(var i = 0; i < cards.length; i++){
+    var c = cards[i];
+    var cb = c.querySelector('input[type=checkbox]');
+    if(cb && cb.checked){
+      var q = parseInt(c.querySelector('.qv').textContent) || 1;
+      tp += (parseInt(c.getAttribute('data-pct')) || 0) * q;
+      tr += (parseInt(c.getAttribute('data-rc')) || 0) * q;
+      var name = c.querySelector('.card-name').textContent.replace(/\n/g,'');
+      items.push(name + (q > 1 ? 'x' + q : ''));
+    }
+  }
+  var at = tp === 0 ? 0 : Math.ceil(tp / 100);
+  var trips = Math.max(at, tp > 0 ? 1 : 0);
+  document.getElementById('t-auto').textContent = trips;
+
+  var labor = 2000 * 4 * 2;
+  var gas = S.area * Math.max(trips, 1);
+  var cost = labor + gas + tr;
+  var price = Math.round(cost * MARGIN);
+  if(price < MIN_PRICE) price = MIN_PRICE;
+
+  var priceEl = document.getElementById('r-price');
+  var minNote = document.getElementById('r-minnote');
+  if(tp === 0){
+    priceEl.textContent = '-- 円';
+    minNote.textContent = '';
+  } else {
+    priceEl.textContent = '\u00a5' + price.toLocaleString() + ' \u301c';
+    minNote.textContent = price === MIN_PRICE ? '最低料金が適用されています' : '';
+  }
+
+  window._calcItems = items;
+  window._calcTrucks = trips;
+  window._calcPrice = price;
+  window._calcTp = tp;
+}
+
+function setArea(el, v){
+  S.area = v;
+  var ls = el.parentElement.querySelectorAll('.rl');
+  for(var i = 0; i < ls.length; i++) ls[i].className = 'rl';
+  el.className = 'rl on';
+  calc();
+}
+
+function toggleCard(cb){
+  var c = getCard(cb);
+  if(c){ c.className = cb.checked ? 'card on' : 'card'; }
+  calc();
+}
+
+function tapCard(el){
+  var c = getCard(el);
+  if(!c) return;
+  var cb = c.querySelector('input[type=checkbox]');
+  cb.checked = !cb.checked;
+  c.className = cb.checked ? 'card on' : 'card';
+  calc();
+}
+
+function qPlus(el){
+  var c = getCard(el);
+  if(!c) return;
+  var cb = c.querySelector('input[type=checkbox]');
+  var qv = c.querySelector('.qv');
+  var v = parseInt(qv.textContent) || 1;
+  if(v < 99){ qv.textContent = v + 1; }
+  if(!cb.checked){ cb.checked = true; c.className = 'card on'; }
+  calc();
+}
+
+function qMinus(el){
+  var c = getCard(el);
+  if(!c) return;
+  var qv = c.querySelector('.qv');
+  var v = parseInt(qv.textContent) || 1;
+  if(v > 1){ qv.textContent = v - 1; }
+  calc();
+}
+
+function getAreaName(){
+  var checked = document.querySelector('input[name="area"]:checked');
+  if(!checked) return '';
+  var label = checked.parentElement;
+  var span = label.querySelector('.area-name');
+  return span ? span.textContent : '';
+}
+
+function submitForm(){
+  var name = document.getElementById('inp-name').value.trim();
+  var phone = document.getElementById('inp-phone').value.trim();
+  var okEl = document.getElementById('msg-ok');
+  var ngEl = document.getElementById('msg-ng');
+  okEl.style.display = 'none';
+  ngEl.style.display = 'none';
+
+  if(!name || !phone){
+    ngEl.textContent = 'お名前と電話番号を入力してください';
+    ngEl.style.display = 'block';
+    return;
+  }
+
+  if(window._calcTp === 0){
+    ngEl.textContent = '品目を1つ以上選択してください';
+    ngEl.style.display = 'block';
+    return;
+  }
+
+  var btn = document.getElementById('submit-btn');
+
+  if(!GAS_URL){
+    ngEl.textContent = 'お電話でお問い合わせください: 070-4680-1725';
+    ngEl.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '送信中...';
+
+  var data = {
+    name: name,
+    phone: phone,
+    area: getAreaName(),
+    items: (window._calcItems || []).join(', '),
+    trucks: window._calcTrucks || 0,
+    price: window._calcPrice || 0
+  };
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', GAS_URL, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+      btn.disabled = false;
+      btn.textContent = '見積もり依頼を送信する';
+      if(xhr.status >= 200 && xhr.status < 300){
+        okEl.style.display = 'block';
+        btn.style.display = 'none';
+      } else {
+        ngEl.textContent = '送信できませんでした。お電話ください: 070-4680-1725';
+        ngEl.style.display = 'block';
+      }
+    }
+  };
+  xhr.onerror = function(){
+    btn.disabled = false;
+    btn.textContent = '見積もり依頼を送信する';
+    ngEl.textContent = '送信できませんでした。お電話ください: 070-4680-1725';
+    ngEl.style.display = 'block';
+  };
+  xhr.send(JSON.stringify(data));
+}
+
+calc();
+</script>
+</body>
+</html>
